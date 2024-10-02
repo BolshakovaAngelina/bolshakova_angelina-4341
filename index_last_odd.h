@@ -1,4 +1,2 @@
-#ifndef INDEX_LAST_ODD
-	#define INDEX_LAST_ODD
+#pragma once
 int index_last_odd(int mass[], int size);
-#endif
