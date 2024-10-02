@@ -29,7 +29,7 @@ int main(){
 			printf("%d\n", sum_before_even_and_after_odd(index_first_even(mass), index_last_odd(mass, size), mass, size));
 			break;
 		default:
-			puts("Data is not correct\n");
+			puts("Данные некорректны\n");
 	}
 	return 0;
 }
