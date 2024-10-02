@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "index_last_odd.h"
 int index_last_odd(int mass[], int size){
 	for (int i = size - 1; ;i--){
 		if (mass[i] % 2 != 0){
