@@ -1,3 +1,50 @@
+int word_counter(const char *sentence){
+    int word_count = 0;
+    for (int j = 0; sentence[j] != '\0'; j++){
+        if (j == 0 || ((isspace(sentence[j-1])) && (!isspace(sentence[j])))){
+            word_count++;
+        }
+    }
+    return word_count;
+}
+int simbol_counter(const char *sentence){
+    int simbol_count = strlen(sentence);
+    return simbol_count;
+}
+
+int cmp2(const void *a, const void *b) {
+    const char *first = *(const char **)a;
+    const char *second = *(const char **)b;
+    int word_diff = word_counter(first) - word_counter(second);
+    if (word_diff != 0) {
+        return word_diff;
+    }
+    return simbol_counter(first) - simbol_counter(second);
+}
+void def7(char **text, size_t *len_text){
+    qsort(text, *len_text, sizeof(char *), cmp2);
+}
+
+void def8(char ***text, size_t *len_text, int *num) {
+    for (int i = 0; i < *len_text; i++) {
+        size_t original_length = strlen((*text)[i]);
+        size_t new_length = original_length * (*num) + 1; 
+        char *new_sentence = (char *)malloc(new_length * sizeof(char));
+        strcpy(new_sentence, (*text)[i]);
+        for (int count = 1; count < *num; count++) {
+            strcat(new_sentence, (*text)[i]);
+        }
+        free((*text)[i]);
+        (*text)[i] = new_sentence;
+        for (int j = 0; j < (new_length-2); j++){
+            if ((*text)[i][j] == '.'){
+                (*text)[i][j] = ' ';
+            }
+        }
+    }
+}
+
+
 int count_upper(char* text){
     int count = 0;
     for (int i = 0; i < strlen(text); i++){
