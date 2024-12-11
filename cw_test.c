@@ -1,3 +1,28 @@
+int count_upper(char* text){
+    int count = 0;
+    for (int i = 0; i < strlen(text); i++){
+        if (isupper(text[i])){
+            count++;
+        }
+    }
+    return count;
+}
+void def8(char ***text, size_t *len_text){
+    int max_count = count_upper(*(text)[0]);
+    for (size_t i = 1; i < *len_text; i++){
+        int this_count = count_upper((*text)[i]);
+        if (this_count > max_count){
+            free((*text)[i]);
+            for (size_t k = i; k < ((*len_text)-1); k++){
+                (*text)[k] = (*text)[k+1];
+            }
+            (*len_text)--;
+            i--;
+        }
+    }
+}
+
+
 int calculate_digit_sum(const char *word){
     int sum = 0;
     for (int i = 0; i < strlen(word); i++){
